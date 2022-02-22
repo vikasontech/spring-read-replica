@@ -14,12 +14,12 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.sql.DataSource;
 
-@Configuration
-@EnableJpaRepositories(
-		basePackages = "com.example",
-    includeFilters = @ComponentScan.Filter(ReadOnlyRepository.class),
-    entityManagerFactoryRef = "readEntityManagerFactory"
-)
+//@Configuration
+//@EnableJpaRepositories(
+//		basePackages = "com.example",
+//    includeFilters = @ComponentScan.Filter(ReadOnlyRepository.class),
+//    entityManagerFactoryRef = "readEntityManagerFactory"
+//)
 
 public class ReadOnlyEntityManagerConfiguration {
   @org.springframework.beans.factory.annotation.Value("${spring.datasource.username}")

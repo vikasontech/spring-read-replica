@@ -11,13 +11,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @org.springframework.transaction.annotation.Transactional(readOnly = true)
 public class HelloServiceImpl implements HelloService {
-  private final ReadOnlyAddressInfoRepo addressInfoRepo;
-  private final AddressInfoRepo addressInfoRepoWrite;
+//  private final ReadOnlyAddressInfoRepo addressInfoRepo;
+//  private final AddressInfoRepo addressInfoRepoWrite;
+  private final AddressInfoRepo addressInfoRepo1;
 
   @Override
   @org.springframework.transaction.annotation.Transactional(readOnly = true)
   public String sayHello() {
-    final AddressInfoEntity one = addressInfoRepo.findById(1L);
+    final AddressInfoEntity one = addressInfoRepo1.findById(1L);
     System.out.println("Data from repository");
     System.out.println(one);
     return "helloRead";
@@ -26,7 +27,7 @@ public class HelloServiceImpl implements HelloService {
   @Override
   @org.springframework.transaction.annotation.Transactional
   public String sayHelloWrite() {
-    final AddressInfoEntity one = addressInfoRepoWrite.findById(1L);
+    final AddressInfoEntity one = addressInfoRepo1.findById(1L);
     System.out.println("Data from repository");
     System.out.println(one);
     return "hello Write";
