@@ -47,3 +47,5 @@ logging:
       springframework:
         data: DEBUG
         transaction: DEBUG
+      apache:
+        tomcat: DEBUG

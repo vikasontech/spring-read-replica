@@ -1,12 +1,12 @@
 package com.example.springreadreplica.config;
 
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.function.Predicate;
 
-public class MultiTenancyInterceptor  extends HandlerInterceptorAdapter {
+public class MultiTenancyInterceptor implements HandlerInterceptor {
 
   Predicate<String> isGet = it -> it.equals("GET");
   Predicate<String> isReadOnlyPath = it -> it.equals("/read");

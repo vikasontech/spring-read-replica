@@ -1,6 +1,6 @@
 package com.example.springreadreplica.config;
 
-import com.example.springreadreplica.entity.AddressInfoEntity;
+import com.example.springreadreplica.entity.CustomersEntity;
 import org.hibernate.MultiTenancyStrategy;
 import org.hibernate.cfg.Environment;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
@@ -16,9 +16,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import javax.sql.DataSource;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-//todo: resource: http://anakiou.blogspot.com/2015/08/multi-tenant-application-with-spring.html
-
 
 @Configuration
 @EnableConfigurationProperties(JpaProperties.class)
@@ -38,15 +35,18 @@ public class MultiTenantJpaConfiguration {
 
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
-    Map<String, Object> hibernateProperties = new LinkedHashMap<>(jpaProperties.getHibernateProperties(dataSource));
+    Map<String, Object> hibernateProperties = new LinkedHashMap<>(jpaProperties.getProperties());
 
     hibernateProperties.put(Environment.MULTI_TENANT, MultiTenancyStrategy.DATABASE);
     hibernateProperties.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, currentTenantIdentifierResolver);
     hibernateProperties.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantConnectionProvider);
     hibernateProperties.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
-
+    hibernateProperties.put("spring.datasource.testOnBorrow", true);
+    hibernateProperties.put("spring.datasource.validationQuery", "select 1");
+    hibernateProperties.put("spring.datasource.tomcat.testOnBorrow", true);
+    hibernateProperties.put("spring.datasource.tomcat.validationQuery", "select 1");
     return builder.dataSource(dataSource)
-        .packages(AddressInfoEntity.class.getPackage().getName())
+        .packages(CustomersEntity.class.getPackage().getName())
         .properties(hibernateProperties)
         .build();
   }
