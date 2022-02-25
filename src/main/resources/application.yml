@@ -16,28 +16,6 @@ spring:
       password: Welcome1
       driver-class-name: com.mysql.jdbc.Driver
 
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/mapi?useSSL=false&characterEncoding=UTF-8
-#    username: merchant_profile
-#    password: Welcome1
-#    driver-class-name: com.mysql.jdbc.Driver
-#  jpa:
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQLDialect
-#cloud:
-#  aws:
-#    rds:
-#      instances:
-#        -
-#          db-instance-identifier: alpha-merchant-profile-db
-#          username: merchant_profile
-#          password: Welcome1
-#          databaseName: mapi
-#          readReplicaSupport: "true"
-#    region:
-#      static: ap-southeast-1
-
 logging:
   level:
     javax:
