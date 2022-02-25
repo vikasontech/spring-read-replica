@@ -22,7 +22,7 @@ import java.util.Map;
 
 @Configuration
 @EnableConfigurationProperties(JpaProperties.class)
-public class MultiTenancyJpaConfiguration {
+public class MultiTenantJpaConfiguration {
 
   @Autowired
   private DataSource dataSource;
@@ -38,17 +38,17 @@ public class MultiTenancyJpaConfiguration {
 
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
-    Map<String, Object> hibernateProps = new LinkedHashMap<>(jpaProperties.getHibernateProperties(dataSource));
+    Map<String, Object> hibernateProperties = new LinkedHashMap<>(jpaProperties.getHibernateProperties(dataSource));
 
-    hibernateProps.put(Environment.MULTI_TENANT, MultiTenancyStrategy.DATABASE);
-    hibernateProps.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantConnectionProvider);
-    hibernateProps.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, currentTenantIdentifierResolver);
-    hibernateProps.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
+    hibernateProperties.put(Environment.MULTI_TENANT, MultiTenancyStrategy.DATABASE);
+    hibernateProperties.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, currentTenantIdentifierResolver);
+    hibernateProperties.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantConnectionProvider);
+    hibernateProperties.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
 
     return builder.dataSource(dataSource)
         .packages(AddressInfoEntity.class.getPackage().getName())
-        .properties(hibernateProps)
-        .jta(false).build();
+        .properties(hibernateProperties)
+        .build();
   }
 
 }

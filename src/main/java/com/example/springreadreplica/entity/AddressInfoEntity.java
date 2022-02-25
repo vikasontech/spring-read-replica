@@ -10,13 +10,8 @@ import java.io.Serializable;
 @Table(name = "address_infos")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@EqualsAndHashCode
 public class AddressInfoEntity implements Serializable {
 
-  /**
-   *
-   */
   private static final long serialVersionUID = 1L;
 
   @Id

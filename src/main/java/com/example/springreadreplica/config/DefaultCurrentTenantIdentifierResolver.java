@@ -8,16 +8,17 @@ import org.springframework.web.context.request.RequestContextHolder;
 import java.util.Optional;
 
 @Component
-public class DefaultCurrentTenantIdentifierResolver implements CurrentTenantIdentifierResolver {
+public class DefaultCurrentTenantIdentifierResolver
+    implements CurrentTenantIdentifierResolver {
 
   @Override
   public String resolveCurrentTenantIdentifier() {
 
     return Optional
         .ofNullable(RequestContextHolder.getRequestAttributes())
-        .map(it -> it.getAttribute(Constants.CURRENT_TENANT_IDENTIFIER, RequestAttributes.SCOPE_REQUEST))
+        .map(it -> it.getAttribute("TENANT_IDENTIFIER", RequestAttributes.SCOPE_REQUEST))
         .map(String.class::cast)
-        .orElse(Constants.DEFAULT_TENANT_ID);
+        .orElse("master");
   }
 
   @Override
