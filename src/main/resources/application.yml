@@ -4,26 +4,21 @@ spring:
       write-enums-using-to-string: true
     deserialization:
       read-enums-using-to-string: true
-  multitenancy:
-    datasource1:
-      url: jdbc:mysql://localhost:3306/mapi?useSSL=false&characterEncoding=UTF-8
-      username: merchant_profile
-      password: Welcome1
-      driver-class-name: com.mysql.jdbc.Driver
-    datasource2:
-      url: jdbc:mysql://localhost:3306/mapi?useSSL=false&characterEncoding=UTF-8
-      username: merchant_profile
-      password: Welcome1
-      driver-class-name: com.mysql.jdbc.Driver
+  datasource:
+    url: jdbc:mysql://localhost:3307/readdb?useSSL=false&characterEncoding=UTF-8
+#    url: jdbc:mysql://localhost:3306/writedb?useSSL=false&characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
 
 logging:
   level:
     javax:
-      sql: DEBUG
-      persistence: DEBUG
+      sql: INFO
+      persistence: INFO
     org:
       springframework:
-        data: DEBUG
-        transaction: DEBUG
+        data: INFO
+        transaction: INFO
       apache:
-        tomcat: DEBUG
+        tomcat: INFO
