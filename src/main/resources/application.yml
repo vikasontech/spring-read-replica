@@ -11,14 +11,27 @@ spring:
     password: root
     driver-class-name: com.mysql.jdbc.Driver
 
+app:
+  read-database:
+    url: jdbc:mysql://localhost:3307/readdb?useSSL=false&characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+  write-database:
+    url: jdbc:mysql://localhost:3306/writedb?useSSL=false&characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
 logging:
   level:
     javax:
-      sql: INFO
-      persistence: INFO
+      sql: DEBUG
+      persistence: DEBUG
     org:
       springframework:
-        data: INFO
-        transaction: INFO
+        data: DEBUG
+        transaction: DEBUG
       apache:
         tomcat: INFO
