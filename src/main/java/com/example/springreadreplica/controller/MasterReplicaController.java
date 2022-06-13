@@ -10,13 +10,22 @@ public class MasterReplicaController {
   @Autowired
   private MasterReplicaService service;
 
+  /**
+   * This endpoint should return the data from MASTER DATABASE
+   * @return
+   */
+
+  @GetMapping("/master")
+  String operationOnMaster() {
+    return service.operationOnMaster();
+  }
+  /**
+   * This endpoint should return the data from REPLICA DATABASE
+   * @return
+   */
   @GetMapping("/replica")
-  String read() {
+  String operationOnReplica() {
     return service.operationOnReplica();
   }
 
-  @GetMapping("/master")
-  String write() {
-    return service.operationOnMaster();
-  }
 }
