@@ -4,23 +4,23 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "app")
 public class ApplicationConfig {
 
-    private DataSourceConfig readDatabase;
-    private DataSourceConfig writeDatabase;
+    private DataSourceConfig replicaDatabase;
+    private DataSourceConfig masterDatabase;
 
-    DataSourceConfig getReadDatabase() {
-        return readDatabase;
+    DataSourceConfig getReplicaDatabase() {
+        return replicaDatabase;
     }
 
-    void setReadDatabase(final DataSourceConfig readDatabase) {
-        this.readDatabase = readDatabase;
+    void setReplicaDatabase(final DataSourceConfig replicaDatabase) {
+        this.replicaDatabase = replicaDatabase;
     }
 
-    DataSourceConfig getWriteDatabase() {
-        return writeDatabase;
+    DataSourceConfig getMasterDatabase() {
+        return masterDatabase;
     }
 
-    void setWriteDatabase(final DataSourceConfig writeDatabase) {
-        this.writeDatabase = writeDatabase;
+    void setMasterDatabase(final DataSourceConfig masterDatabase) {
+        this.masterDatabase = masterDatabase;
     }
 
     static class DataSourceConfig {
