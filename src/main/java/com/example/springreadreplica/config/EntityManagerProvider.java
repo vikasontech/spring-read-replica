@@ -1,5 +1,6 @@
 package com.example.springreadreplica.config;
 
+import com.example.springreadreplica.SpringReadReplicaApplication;
 import org.hibernate.MultiTenancyStrategy;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.Map;
 public class EntityManagerProvider {
 
     @Autowired
-    @Qualifier("writeDataSource")
+    @Qualifier("masterDataSource")
     private DataSource dataSource;
 
     @Autowired
@@ -44,7 +45,7 @@ public class EntityManagerProvider {
         hibernateProperties.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, customMultiTenaceProvider);
 
         return builder.dataSource(dataSource)
-                .packages( "com.example.springreadreplica")
+                .packages(SpringReadReplicaApplication.class)
                 .properties(hibernateProperties)
                 .build();
     }

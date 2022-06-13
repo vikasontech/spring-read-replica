@@ -16,7 +16,7 @@ public class TenantIdentifier implements CurrentTenantIdentifierResolver {
                         RequestContextHolder.getRequestAttributes())
                 .map(it -> it.getAttribute("TENANT_IDENTIFIER", RequestAttributes.SCOPE_REQUEST))
                 .map(String.class::cast)
-                .orElse("write");
+                .orElse(AppConstants.MASTER);
     }
 
     @Override

@@ -10,13 +10,13 @@ public class ReadWriteController {
   @Autowired
   private ReadWriteService helloService;
 
-  @GetMapping("/read")
-  String read() {
+  @GetMapping("/replica")
+  String operationOnReplica() {
     return helloService.readOperations();
   }
 
-  @GetMapping("/write")
-  String write() {
+  @GetMapping("/master")
+  String operationOnMaster() {
     return helloService.writeOperations();
   }
 }

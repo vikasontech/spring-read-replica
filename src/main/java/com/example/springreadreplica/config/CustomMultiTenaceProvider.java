@@ -14,22 +14,22 @@ import java.util.Map;
 public class CustomMultiTenaceProvider extends AbstractDataSourceBasedMultiTenantConnectionProviderImpl {
 
     @Autowired
-    @Qualifier("writeDataSource")
-    private DataSource writeDataSource;
+    @Qualifier("masterDataSource")
+    private DataSource masterDatasource;
     @Autowired
-    @Qualifier("readDataSource")
-    private DataSource readDataSource;
+    @Qualifier("replicaDataSource")
+    private DataSource replicaDataSource;
     final Map<String, DataSource> dataSourceMap= new HashMap<>(2);
 
     @PostConstruct
     public void setup(){
-        dataSourceMap.put("write", writeDataSource);
-        dataSourceMap.put("read", readDataSource);
+        dataSourceMap.put(AppConstants.MASTER, masterDatasource);
+        dataSourceMap.put(AppConstants.REPLICA, replicaDataSource);
     }
 
     @Override
     protected DataSource selectAnyDataSource() {
-        return writeDataSource;
+        return masterDatasource;
     }
 
     @Override

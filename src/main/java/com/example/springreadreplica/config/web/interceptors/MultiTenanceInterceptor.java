@@ -1,5 +1,7 @@
 package com.example.springreadreplica.config.web.interceptors;
 
+import com.example.springreadreplica.config.AppConstants;
+import com.mysql.cj.Constants;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +13,8 @@ public class MultiTenanceInterceptor implements HandlerInterceptor {
         final String method = request.getMethod();
         final String requestURI = request.getRequestURI();
 
-        if(method.equals("GET") && requestURI.equals("/read")) {
-            request.setAttribute("TENANT_IDENTIFIER", "read");
+        if(method.equals("GET") && requestURI.equals("/" + AppConstants.REPLICA)) {
+            request.setAttribute("TENANT_IDENTIFIER", AppConstants.REPLICA);
         }
 
         return true;

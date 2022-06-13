@@ -21,13 +21,13 @@ public class DataSourceConfig {
             .username(config.getUsername())
             .build();
 
-    @Bean(name = "writeDataSource")
+    @Bean(name = "masterDataSource")
     @Primary
-    public DataSource getWriteDataSource() {
+    public DataSource masterDataSource() {
         return datasourceProvider.apply(applicationConfig.getWriteDatabase());
     }
-    @Bean(name = "readDataSource")
-    public DataSource getReadDataSource() {
+    @Bean(name = "replicaDataSource")
+    public DataSource replicaDataSource() {
         return datasourceProvider.apply(applicationConfig.getReadDatabase());
     }
 
