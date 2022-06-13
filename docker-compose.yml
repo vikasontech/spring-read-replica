@@ -1,0 +1,20 @@
+version: '3'
+services:
+  mysql1:
+    image: mysql:5.6.34
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_USER=write
+      - MYSQL_PASSWORD=write
+      - MYSQL_ROOT_PASSWORD=root
+  mysql2:
+    image: mysql:5.6.34
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_USER=write
+      - MYSQL_PASSWORD=write
+      - MYSQL_ROOT_PASSWORD=root

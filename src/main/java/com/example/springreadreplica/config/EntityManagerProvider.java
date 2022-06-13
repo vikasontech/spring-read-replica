@@ -37,15 +37,11 @@ public class EntityManagerProvider {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(
             EntityManagerFactoryBuilder builder
     ) {
-//        final Map<String, String> properties = jpaProperties.getProperties();
         Map<String, Object> hibernateProperties = new LinkedHashMap<>(jpaProperties.getProperties());
 
         hibernateProperties.put(Environment.MULTI_TENANT, MultiTenancyStrategy.DATABASE);
         hibernateProperties.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, tenantIdentifier);
         hibernateProperties.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, customMultiTenaceProvider);
-        hibernateProperties.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
-        hibernateProperties.put("spring.datasource.tomcat.testOnBorrow", true);
-        hibernateProperties.put("spring.datasource.tomcat.validationQuery", "select 1");
 
         return builder.dataSource(dataSource)
                 .packages( "com.example.springreadreplica")
