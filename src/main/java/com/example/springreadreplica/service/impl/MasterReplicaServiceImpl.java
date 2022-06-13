@@ -2,25 +2,25 @@ package com.example.springreadreplica.service.impl;
 
 import com.example.springreadreplica.entity.CustomersEntity;
 import com.example.springreadreplica.repo.CustomersRepo;
-import com.example.springreadreplica.service.ReadWriteService;
+import com.example.springreadreplica.service.MasterReplicaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ReadWriteServiceImpl implements ReadWriteService {
+public class MasterReplicaServiceImpl implements MasterReplicaService {
 
   private final CustomersRepo customersRepo;
 
   @Override
-  public String readOperations() {
+  public String operationOnReplica() {
     final CustomersEntity one = customersRepo.findById(1L).get();
     System.out.println(one);
     return one.toString();
   }
 
   @Override
-  public String writeOperations() {
+  public String operationOnMaster() {
     final CustomersEntity one = customersRepo.findById(1L).get();
     System.out.println(one);
     return one.toString();

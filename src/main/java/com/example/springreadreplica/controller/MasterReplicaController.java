@@ -1,22 +1,22 @@
 package com.example.springreadreplica.controller;
 
-import com.example.springreadreplica.service.ReadWriteService;
+import com.example.springreadreplica.service.MasterReplicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ReadWriteController {
+public class MasterReplicaController {
   @Autowired
-  private ReadWriteService helloService;
+  private MasterReplicaService service;
 
-  @GetMapping("/read")
+  @GetMapping("/replica")
   String read() {
-    return helloService.readOperations();
+    return service.operationOnReplica();
   }
 
-  @GetMapping("/write")
+  @GetMapping("/master")
   String write() {
-    return helloService.writeOperations();
+    return service.operationOnMaster();
   }
 }
