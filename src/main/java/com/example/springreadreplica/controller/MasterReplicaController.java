@@ -3,6 +3,7 @@ package com.example.springreadreplica.controller;
 import com.example.springreadreplica.service.MasterReplicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,7 +16,7 @@ public class MasterReplicaController {
    * @return
    */
 
-  @GetMapping("/master")
+  @PostMapping("/master")
   String operationOnMaster() {
     return service.operationOnMaster();
   }

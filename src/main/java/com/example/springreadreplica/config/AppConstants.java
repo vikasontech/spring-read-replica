@@ -7,6 +7,7 @@ public abstract class AppConstants {
     }
 
     public static String MASTER = "master";
+    public static String TENANT_IDENTIFIER= "TENANT_IDENTIFIER";
     //    public static String MASTER_DATA_SOURCE = "masterDataSource";
     public static String REPLICA = "replica";
 
